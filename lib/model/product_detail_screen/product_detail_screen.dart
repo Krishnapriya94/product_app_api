@@ -1,14 +1,16 @@
 // To parse this JSON data, do
 //
-//     final productResModel = productResModelFromJson(jsonString);
+//     final productByIdModel = productByIdModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<ProductResModel> productResModelFromJson(String str) =>
-    List<ProductResModel>.from(
-        json.decode(str).map((x) => ProductResModel.fromJson(x)));
+ProductByIdModel productByIdModelFromJson(String str) =>
+    ProductByIdModel.fromJson(json.decode(str));
 
-class ProductResModel {
+String productByIdModelToJson(ProductByIdModel data) =>
+    json.encode(data.toJson());
+
+class ProductByIdModel {
   int? id;
   String? title;
   double? price;
@@ -17,7 +19,7 @@ class ProductResModel {
   String? image;
   Rating? rating;
 
-  ProductResModel({
+  ProductByIdModel({
     this.id,
     this.title,
     this.price,
@@ -27,8 +29,8 @@ class ProductResModel {
     this.rating,
   });
 
-  factory ProductResModel.fromJson(Map<String, dynamic> json) =>
-      ProductResModel(
+  factory ProductByIdModel.fromJson(Map<String, dynamic> json) =>
+      ProductByIdModel(
         id: json["id"],
         title: json["title"],
         price: json["price"]?.toDouble(),
@@ -37,11 +39,21 @@ class ProductResModel {
         image: json["image"],
         rating: json["rating"] == null ? null : Rating.fromJson(json["rating"]),
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "title": title,
+        "price": price,
+        "description": description,
+        "category": category,
+        "image": image,
+        "rating": rating?.toJson(),
+      };
 }
 
 class Rating {
   double? rate;
-  num? count;
+  int? count;
 
   Rating({
     this.rate,
@@ -52,4 +64,9 @@ class Rating {
         rate: json["rate"]?.toDouble(),
         count: json["count"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "rate": rate,
+        "count": count,
+      };
 }

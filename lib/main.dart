@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:product_app_api/controller/product_detail_screen_controller.dart';
+import 'package:product_app_api/controller/product_details_controller.dart';
+
 import 'package:product_app_api/controller/product_screen_controller.dart';
-import 'package:product_app_api/view/home_screen/home_screen.dart';
-import 'package:product_app_api/view/product_screen/product_screen.dart';
+import 'package:product_app_api/view/get_started_screen/get_started_screen.dart';
+
 import 'package:provider/provider.dart';
 
 void main() {
@@ -20,12 +21,12 @@ class MyApp extends StatelessWidget {
             create: (context) => ProductScreenController(),
           ),
           ChangeNotifierProvider(
-            create: (context) => ProductDetailScreenController(),
+            create: (context) => ProductDetailsController(),
           )
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: HomeScreen(),
+          home: GetStartedScreen(),
         ));
   }
 }
