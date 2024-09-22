@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:product_app_api/controller/product_screen_controller.dart';
 import 'package:product_app_api/utils/color_constants/color_constants.dart';
+import 'package:product_app_api/view/cart_screen/cart_screen.dart';
 import 'package:product_app_api/view/product_detail_screen/product_detail_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -47,7 +48,13 @@ class _ProductScreenState extends State<ProductScreen> {
               width: 10,
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CartScreen(),
+                      ));
+                },
                 icon: Icon(Icons.shopping_cart_outlined,
                     size: 30, color: ColorConstants.mainBlack)),
             SizedBox(
@@ -250,21 +257,24 @@ class _ProductScreenState extends State<ProductScreen> {
                                               SizedBox(
                                                 height: 2,
                                               ),
-                                              Container(
-                                                width: double.infinity,
-                                                height: 45,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    color: ColorConstants
-                                                        .mainBlack),
-                                                child: Center(
-                                                  child: Text(
-                                                    "Add to Cart",
-                                                    style: TextStyle(
-                                                        color: ColorConstants
-                                                            .mainWhite),
+                                              InkWell(
+                                                onTap: () {},
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: 45,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      color: ColorConstants
+                                                          .mainBlack),
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Add to Cart",
+                                                      style: TextStyle(
+                                                          color: ColorConstants
+                                                              .mainWhite),
+                                                    ),
                                                   ),
                                                 ),
                                               )
